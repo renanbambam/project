@@ -1,0 +1,535 @@
+<div class="form__box">
+  <div class="form__box__items">
+    <div class="logo item">
+      <a class="logo__img">Logo</a>
+    </div>
+
+    <div class="social-media item">
+      <div class="social-media__box">
+        <button class="social-media__box__button">
+          <img
+            src="https://ableproadmin.com/react/static/media/facebook.5b823a6232805871728da1033d817609.svg"
+            alt="Facebook"
+            class="social-media__box__img"
+          />
+          Sign In with Facebook
+        </button>
+      </div>
+      <div class="social-media__box">
+        <button class="social-media__box__button">
+          <img
+            src="	https://ableproadmin.com/react/static/media/google.9f927c6322f531ec12cfc1f457d746dd.svg"
+            alt="Facebook"
+            class="social-media__box__img"
+          />
+          Sign In with Google
+        </button>
+      </div>
+      <div class="social-media__box">
+        <button class="social-media__box__button">
+          <img
+            src="	https://ableproadmin.com/react/static/media/twitter.5b9c9738bc8e86846c91f27886cebacf.svg"
+            alt="Facebook"
+            class="social-media__box__img"
+          />
+          Sign In with Twitter
+        </button>
+      </div>
+    </div>
+
+    <div class="division item">
+      <p class="division__title">OR</p>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        <h3 class="title__steps">Register</h3>
+        <a routerLink="login" class="create-account"
+          >Already have an account?</a
+        >
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="form">
+        <form
+          #form="ngForm"
+          class="form"
+          [formGroup]="registerForm"
+          (submit)="register()"
+        >
+          <div class="form-group">
+            <label class="form-group__title">Nome Completo</label>
+            <div
+              [ngClass]="registerForm.get('name')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('name')?.touched,
+                  invalid: registerForm.get('name')?.invalid
+                }"
+              >
+                <input
+                  #nameInput
+                  class="form-control"
+                  placeholder="Nome completo"
+                  autofocus
+                  formControlName="name"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('name')?.hasError('required')"
+                text="Name is required"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('name')?.hasError('minlength')"
+                text="Name should be of minimum 8 characters length"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('name')?.hasError('maxlength')"
+                text="Name should be of maximum 35 characters length"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Email</label>
+            <div
+              [ngClass]="registerForm.get('email')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('email')?.touched,
+                  invalid: registerForm.get('email')?.invalid
+                }"
+              >
+                <input
+                  #userNameInput
+                  class="form-control"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('email')?.hasError('required')"
+                text="Email is required"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('email')?.hasError('email')"
+                text="Enter a valid email"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Senha</label>
+            <div class="input">
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('password')?.touched,
+                  invalid: registerForm.get('password')?.invalid
+                }"
+              >
+                <input
+                  [type]="isActive ? 'text' : 'password'"
+                  class="form-control"
+                  placeholder="Senha"
+                  formControlName="password"
+                />
+
+                <div class="input__btn">
+                  <button class="icon" (click)="toggle()">show</button>
+                </div>
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('password')?.hasError('required')"
+                text="Password is required"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('password')?.hasError('minlength')"
+                text="Password should be of minimum 8 characters length"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('password')?.hasError('maxlength')"
+                text="Password should be of maximum 35 characters length"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Endereço</label>
+            <div
+              [ngClass]="registerForm.get('address')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('address')?.touched,
+                  invalid: registerForm.get('address')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Endereço"
+                  formControlName="address"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('address')?.hasError('required')"
+                text="Address is required"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('address')?.hasError('minlength')"
+                text="Address should be of minimum 8 characters length"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="registerForm.get('address')?.hasError('maxlength')"
+                text="Address should be of maximum 35 characters length"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Numero do endereço</label>
+            <div
+              [ngClass]="
+                registerForm.get('addressNumber')?.valid ? '' : 'invalid'
+              "
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('addressNumber')?.touched,
+                  invalid: registerForm.get('addressNumber')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Número do endereço"
+                  formControlName="addressNumber"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('addressNumber')?.hasError('required')"
+                text="addressNumber is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Cidade</label>
+            <div
+              [ngClass]="registerForm.get('city')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('city')?.touched,
+                  invalid: registerForm.get('city')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Cidade"
+                  formControlName="city"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('city')?.hasError('required')"
+                text="Your city is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Estado</label>
+            <div
+              [ngClass]="registerForm.get('state')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('state')?.touched,
+                  invalid: registerForm.get('state')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Estado"
+                  formControlName="state"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('state')?.hasError('required')"
+                text="Your state is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">País</label>
+            <div
+              [ngClass]="registerForm.get('country')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('country')?.touched,
+                  invalid: registerForm.get('country')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="País"
+                  formControlName="country"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('country')?.hasError('required')"
+                text="Your country is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">CEP</label>
+            <div
+              [ngClass]="registerForm.get('zipcode')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('zipcode')?.touched,
+                  invalid: registerForm.get('zipcode')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="CEP"
+                  formControlName="zipcode"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('zipcode')?.hasError('required')"
+                text="Your zipcode is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Data de Nascimento</label>
+            <div
+              [ngClass]="registerForm.get('birthday')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('birthday')?.touched,
+                  invalid: registerForm.get('birthday')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Data de Nascimento"
+                  formControlName="birthday"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('birthday')?.hasError('required')"
+                text="Your birthday is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">CPF/NPJ</label>
+            <div
+              [ngClass]="registerForm.get('document')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('document')?.touched,
+                  invalid: registerForm.get('document')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="CPF/CNPJ"
+                  formControlName="document"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('document')?.hasError('required')"
+                text="Your document is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Número de celular</label>
+            <div
+              [ngClass]="registerForm.get('phone')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('phone')?.touched,
+                  invalid: registerForm.get('phone')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Número de celular"
+                  formControlName="phone"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('phone')?.hasError('required')"
+                text="Your phone number is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Identificação da compania</label>
+            <div
+              [ngClass]="registerForm.get('company_id')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('company_id')?.touched,
+                  invalid: registerForm.get('company_id')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Identificação da compania"
+                  formControlName="company_id"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('company_id')?.hasError('required')"
+                text="Your company identification is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Identificação da filial</label>
+            <div
+              [ngClass]="registerForm.get('branch_id')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('branch_id')?.touched,
+                  invalid: registerForm.get('branch_id')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Identificação da filial"
+                  formControlName="branch_id"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('branch_id')?.hasError('required')"
+                text="Your branch identification is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Avatar</label>
+            <div
+              [ngClass]="registerForm.get('avatar')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: registerForm.get('avatar')?.touched,
+                  invalid: registerForm.get('avatar')?.invalid
+                }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="Estado"
+                  formControlName="avatar"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="registerForm.get('avatar')?.hasError('required')"
+                text="Your avatar is required"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="forgot-password">
+            <a href="" class="forgot-password__link">Forgot Password?</a>
+          </div>
+
+          <button
+            [disabled]="registerForm.invalid"
+            type="submit"
+            class="submit"
+            routerLink="login"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="mb-3">
+      <label>Roles</label>
+      <input
+        type="roles"
+        class="form-control"
+        formControlName="roles"
+        placeholder="roles"
+        required
+      />
+    </div> -->

@@ -1,0 +1,31 @@
+<div class="main">
+  <button
+    #buttonMenu
+    class="btn"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasScrolling"
+    aria-controls="offcanvasScrolling"
+    (click)="activate()"
+    [ngClass]="active ? 'active-button' : ''"
+  >
+    |||
+  </button>
+
+  <div class="profile" (click)="showProfile()">
+    <img src="" alt="" class="profile__img" />
+    <div *ngIf="profile" [@profileAnimation] class="profile__box">
+      <div class="profile__box__title">
+        <div class="profile__info">
+          <img src="" alt="" class="profile__info__img" />
+          <div>
+            <h6 class="title">{{ name }}</h6>
+            <p class="subtitle">{{ email }}</p>
+          </div>
+        </div>
+        <button class="logout" (click)="logout()">-></button>
+      </div>
+      <div class="profile__box__description"></div>
+    </div>
+  </div>
+</div>

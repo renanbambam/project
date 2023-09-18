@@ -1,0 +1,150 @@
+<div class="form__box">
+  <div class="form__box__items">
+    <div class="logo item">
+      <a class="logo__img">Logo</a>
+    </div>
+
+    <div class="social-media item">
+      <div class="social-media__box">
+        <button class="social-media__box__button">
+          <img
+            src="https://ableproadmin.com/react/static/media/facebook.5b823a6232805871728da1033d817609.svg"
+            alt="Facebook"
+            class="social-media__box__img"
+          />
+          Sign In with Facebook
+        </button>
+      </div>
+      <div class="social-media__box">
+        <button class="social-media__box__button">
+          <img
+            src="	https://ableproadmin.com/react/static/media/google.9f927c6322f531ec12cfc1f457d746dd.svg"
+            alt="Facebook"
+            class="social-media__box__img"
+          />
+          Sign In with Google
+        </button>
+      </div>
+      <div class="social-media__box">
+        <button class="social-media__box__button">
+          <img
+            src="	https://ableproadmin.com/react/static/media/twitter.5b9c9738bc8e86846c91f27886cebacf.svg"
+            alt="Facebook"
+            class="social-media__box__img"
+          />
+          Sign In with Twitter
+        </button>
+      </div>
+    </div>
+
+    <div class="division item">
+      <p class="division__title">OR</p>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        <h3 class="title__steps">Login</h3>
+        <a routerLink="register" class="create-account"
+          >Don't have an account?</a
+        >
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="form">
+        <form
+          #form="ngForm"
+          class="form"
+          [formGroup]="loginForm"
+          (submit)="login()"
+        >
+          <div class="form-group">
+            <label class="form-group__title">Email</label>
+            <div
+              [ngClass]="loginForm.get('email')?.valid ? '' : 'invalid'"
+              class="input"
+            >
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: loginForm.get('email')?.touched,
+                  invalid: loginForm.get('email')?.invalid
+                }"
+              >
+                <input
+                  #userNameInput
+                  class="form-control"
+                  placeholder="Email"
+                  autofocus
+                  formControlName="email"
+                />
+              </fieldset>
+              <app-imessage
+                *ngIf="loginForm.get('email')?.hasError('required')"
+                text="Email is required"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="loginForm.get('email')?.hasError('email')"
+                text="Enter a valid email"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__title">Senha</label>
+            <div class="input">
+              <fieldset
+                class="input__area"
+                [ngClass]="{
+                  focus: loginForm.get('password')?.touched,
+                  invalid: loginForm.get('password')?.invalid
+                }"
+              >
+                <input
+                  [type]="isActive ? 'text' : 'password'"
+                  class="form-control"
+                  placeholder="Senha"
+                  formControlName="password"
+                />
+
+                <div class="input__btn">
+                  <button class="icon" (click)="toggle()">show</button>
+                </div>
+              </fieldset>
+              <app-imessage
+                *ngIf="loginForm.get('password')?.hasError('required')"
+                text="Password is required"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="loginForm.get('password')?.hasError('minlength')"
+                text="Password should be of minimum 8 characters length"
+              >
+              </app-imessage>
+              <app-imessage
+                *ngIf="loginForm.get('password')?.hasError('maxlength')"
+                text="Password should be of maximum 35 characters length"
+              >
+              </app-imessage>
+            </div>
+          </div>
+
+          <div class="forgot-password">
+            <a href="" class="forgot-password__link">Forgot Password?</a>
+          </div>
+
+          <button
+            [disabled]="loginForm.invalid"
+            type="submit"
+            class="submit"
+            routerLink="home"
+          >
+            login
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

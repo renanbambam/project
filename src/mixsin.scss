@@ -1,0 +1,19 @@
+@function color($color-name) {
+  @return var(--color-#{$color-name})
+}
+
+// @function fontweight($fontweight) {
+//   @return var(--fontweight-#{$fontweight})
+// }
+
+@function fontsize($fontsize) {
+  @return var(--fontsize-#{$fontsize})
+}
+
+@function fontfammily($fontfammily) {
+  @return var(--fontfammily-#{$fontfammily})
+}
+
+@function boxshadow($boxshadow) {
+  @return var(--boxshadow-#{$boxshadow})
+}

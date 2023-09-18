@@ -1,0 +1,137 @@
+<div
+  #offcanvas
+  class="offcanvas offcanvas-start visible transform-none w-1/5 transition ease-in-out duration-1000"
+  data-bs-scroll="true"
+  data-bs-backdrop="false"
+  tabindex="-1"
+  id="offcanvasScrolling"
+  aria-labelledby="offcanvasScrollingLabel"
+>
+  <div class="offcanvas-header d-flex">
+    <img
+      src="https://ableproadmin.com/react/static/media/google.9f927c6322f531ec12cfc1f457d746dd.svg"
+      alt="Facebook"
+      class="logo"
+    />
+    <button
+      [@animationShowMenu]
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+      *ngIf="showClose"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body mob">
+    <div class="menu">
+      <div
+        routerLink="home"
+        [routerLinkActive]="'selected'"
+        class="menu__items"
+      >
+        <div class="menu__items__icon together">icon</div>
+        <div [@animationShowMenu] class="menu__items__title">home</div>
+        <!-- <div *ngIf="show" [@animationShowMenu] class="menu__items__complement">
+          new
+        </div> -->
+      </div>
+
+      <div [routerLink]="'[/]'" routerLinkActive="selected" class="menu__items">
+        <div class="menu__items__icon together">icon</div>
+        <div [@animationShowMenu] class="menu__items__title">title2</div>
+        <div [@animationShowMenu] class="menu__items__complement"></div>
+      </div>
+
+      <div [routerLink]="'[/]'" routerLinkActive="selected" class="menu__items">
+        <div class="menu__items__icon together">icon</div>
+        <div [@animationShowMenu] class="menu__items__title">title3</div>
+        <div [@animationShowMenu] class="menu__items__complement"></div>
+      </div>
+
+      <div [routerLink]="'[/]'" routerLinkActive="selected" class="menu__items">
+        <div class="menu__items__icon together">icon</div>
+        <div [@animationShowMenu] class="menu__items__title">title4</div>
+        <div [@animationShowMenu] class="menu__items__complement"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas-body pc">
+    <div class="menu">
+      <div
+        [ngClass]="alone ? 'alone' : ''"
+        routerLink="home"
+        [routerLinkActive]="'selected'"
+        class="menu__items"
+      >
+        <div [ngClass]="alone ? '' : 'together'" class="menu__items__icon">
+          icon
+        </div>
+        <div *ngIf="show" [@animationShowMenu] class="menu__items__title">
+          home
+        </div>
+        <!-- <div *ngIf="show" [@animationShowMenu] class="menu__items__complement">
+          new
+        </div> -->
+      </div>
+
+      <div
+        [ngClass]="alone ? 'alone' : ''"
+        [routerLink]="'[/]'"
+        routerLinkActive="selected"
+        class="menu__items"
+      >
+        <div [ngClass]="alone ? '' : 'together'" class="menu__items__icon">
+          icon
+        </div>
+        <div *ngIf="show" [@animationShowMenu] class="menu__items__title">
+          title2
+        </div>
+        <div
+          *ngIf="show"
+          [@animationShowMenu]
+          class="menu__items__complement"
+        ></div>
+      </div>
+
+      <div
+        [ngClass]="alone ? 'alone' : ''"
+        [routerLink]="'[/]'"
+        routerLinkActive="selected"
+        class="menu__items"
+      >
+        <div [ngClass]="alone ? '' : 'together'" class="menu__items__icon">
+          icon
+        </div>
+        <div *ngIf="show" [@animationShowMenu] class="menu__items__title">
+          title3
+        </div>
+        <div
+          *ngIf="show"
+          [@animationShowMenu]
+          class="menu__items__complement"
+        ></div>
+      </div>
+
+      <div
+        [ngClass]="alone ? 'alone' : ''"
+        [routerLink]="'[/]'"
+        routerLinkActive="selected"
+        class="menu__items"
+      >
+        <div [ngClass]="alone ? '' : 'together'" class="menu__items__icon">
+          icon
+        </div>
+        <div *ngIf="show" [@animationShowMenu] class="menu__items__title">
+          title4
+        </div>
+        <div
+          *ngIf="show"
+          [@animationShowMenu]
+          class="menu__items__complement"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
