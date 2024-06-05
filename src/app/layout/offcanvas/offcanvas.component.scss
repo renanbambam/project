@@ -43,19 +43,45 @@
     width: 90px;
   }
 
-  .btn-close {
+  .xmark {
+    margin: 0;
+    background-color: #ffffff3d;
+    background: 0;
+    border: 0;
+  }
+
+  .offcanvas-header-img {
+    display: none;
 
     @media screen and (min-width: 768px) {
-      display: none;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      position: relative;
+      padding: 28px;
+    }
+  }
+
+  .offcanvas-header-btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 208px;
+    top: auto;
+    width: 88px;
+    height: 88px;
+
+    @media screen and (min-width: 768px) {
+      left: 190px;
+      top: 0;
     }
   }
 
   .offcanvas-header {
     max-width: 100%;
     height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
 
     @media screen and (min-width: 768px) {
       justify-content: flex-start;
@@ -65,11 +91,15 @@
     .logo {
       min-width: 32px;
       min-height: 32px;
-      margin: auto;
+      margin: 0;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       padding: 16px;
+
+      @media screen and (min-width: 768px) {
+        padding: 0;
+      }
     }
   }
 

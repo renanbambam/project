@@ -29,7 +29,7 @@ export class AuthService {
   ) {}
 
   register(user: RegisterUser): Observable<any> {
-    const registerUrl = `${this.endpoint}/user`;
+    const registerUrl = `${this.endpoint}/enterprise`;
     return this.http
       .post(registerUrl, user, {
         observe: 'response',
@@ -44,17 +44,19 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post(`${this.endpoint}/auth/login`, user, {
+    return this.http.post(`${this.endpoint}/authentication/login`, user, {
       observe: 'response',
       withCredentials: true,
-    });
+    }).pipe(
+      map(response => response)
+    );
   }
 
   refreshToken(token: string) {
-    const id = this.jwtService.decodeToken(token).sub;
-    return this.http.post(`${this.endpoint}/auth/refresh`, {
-      id,
-      refreshToken: token,
+    return this.http.post(`${this.endpoint}/authentication/refresh`, {}, {
+      headers:{
+        Authorization: token,
+      }
     });
   }
 

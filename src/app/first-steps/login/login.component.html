@@ -56,7 +56,7 @@
           #form="ngForm"
           class="form"
           [formGroup]="loginForm"
-          (submit)="login()"
+          (ngSubmit)="login()"
         >
           <div class="form-group">
             <label class="form-group__title">Email</label>
@@ -74,7 +74,7 @@
                 <input
                   #userNameInput
                   class="form-control"
-                  placeholder="Email"
+                  placeholder="Email ou usuário"
                   autofocus
                   formControlName="email"
                 />
@@ -85,7 +85,7 @@
               >
               </app-imessage>
               <app-imessage
-                *ngIf="loginForm.get('email')?.hasError('email')"
+                *ngIf="loginForm.get('email')?.hasError('emailOrUsername')"
                 text="Enter a valid email"
               >
               </app-imessage>
@@ -139,7 +139,6 @@
             [disabled]="loginForm.invalid"
             type="submit"
             class="submit"
-            routerLink="home"
           >
             login
           </button>

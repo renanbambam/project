@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../shared/models/user';
 import { TokensService } from '../../auth/tokens/tokens.service';
+import { CustomValidators } from 'src/app/shared/validators/login-validator';
 
 @Component({
   selector: 'app-login',
@@ -34,11 +35,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private cdRef: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     private tokensService: TokensService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email, CustomValidators.emailOrUsername]],
       password: [
         '',
         [
@@ -61,23 +62,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    const email = this.loginForm.get('email')?.value;
+    const emailOrUsername = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    const user: User = {
-      email: email,
-      password: password,
-    };
+    const user = emailOrUsername.includes('@')
+      ? { email: emailOrUsername, password: password }
+      : { name: emailOrUsername, password: password };
 
     return this.authService.login(user).subscribe({
       next: (res) => {
-        const { access_token, refresh_token } = res.body;
-        if (access_token && refresh_token) {
+        const { accessToken, refreshToken } = res.body;
+        if (accessToken && refreshToken) {
           this.tokensService.saveAccessAndRefreshToken(
-            access_token,
-            refresh_token
+            accessToken,
+            refreshToken
           );
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/dashboard');
         }
       },
       error: (error) => {

@@ -7,6 +7,8 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginGuard } from './auth/guards/login.guard';
 import { FirstStepsComponent } from './first-steps/first-steps.component';
+import { IncomeExpenseComponent } from './layout/income-expense/income-expense.component';
+import { InvoicePaymentComponent } from './layout/invoice-payment/invoice-payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -32,9 +34,21 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'home',
+        path: 'dashboard',
         component: HomeComponent,
-        data: { title: 'Home' },
+        data: { title: 'Dashboard' },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'fluxo-de-caixa',
+        component: IncomeExpenseComponent,
+        data: { title: 'Fluxo de caixa' },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'fatura',
+        component: InvoicePaymentComponent,
+        data: { title: 'Fatura' },
         canActivate: [AuthGuard],
       },
     ],

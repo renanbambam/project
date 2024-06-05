@@ -16,7 +16,7 @@ export class LoginGuard {
     state: RouterStateSnapshot
   ): boolean {
     if (this.authService.isLogged()) {
-      this.router.navigate(['home']);
+      this.router.navigate(['dashboard']);
       return false;
     }
     return true;

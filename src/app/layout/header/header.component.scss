@@ -29,6 +29,7 @@
 
   .profile {
     border-radius: 50%;
+    margin-right: 24px;
 
     &__img {
       width: 56px;
@@ -52,8 +53,8 @@
       }
 
       &__img {
-        width: 40px;
-        height: 40px;
+        width: 32px; 
+        height: 32px;
         margin-right: 8px;
         border-radius: 50%;
       }
@@ -83,20 +84,19 @@
         align-items: center;
       }
 
+      .logout-box{
+        &:hover {
+          color: white;
+          background-color: rgb(119, 63, 63);
+          cursor: pointer;
+        }
+      }
+
       .logout {
         color: rgb(219, 224, 229);
-        height: 40px;
-        width: 40px;
         background: none;
-        box-shadow: none;
-        border: 1px solid;
-        border-radius: 30%;
-        margin-left: 16px;
-
-        &:hover {
-          color: rgb(231, 103, 103);
-          background-color: rgb(197, 13, 13);
-        }
+        border: 0;
+        padding: 0;
       }
     }
   }

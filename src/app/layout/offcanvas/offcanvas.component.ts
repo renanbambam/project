@@ -9,12 +9,12 @@ import { EventBusService } from 'src/app/shared/event-bus.service';
   animations: [
     trigger('animationShowMenu', [
       transition(':enter', [
-        style({ transform: 'translateX(100%)', opacity: 0 }),
-        animate('.5s', style({ transform: 'translateX(0)', opacity: 1 })),
+        style({ left: '-50px', opacity: 0 }),
+        animate('.5s', style({ left: '-50px', opacity: 0 })),
+        animate('.5s', style({ left: '190px', opacity: 1 })),
       ]),
       transition(':leave', [
-        style({ transform: 'translateX(0)', opacity: 1 }),
-        animate('.5s', style({ transform: 'translateX(100%)', opacity: 0 })),
+        animate('.5s', style({ opacity: 0 })),
       ]),
     ]),
   ],
@@ -26,6 +26,7 @@ export class OffcanvasComponent implements OnInit {
   show = false;
   alone = true;
   showClose = false;
+  showLogoMob = false;
 
   eventBusSub?: Subscription;
 
@@ -39,7 +40,9 @@ export class OffcanvasComponent implements OnInit {
     if (myOffcanvas !== null) {
       myOffcanvas.addEventListener('show.bs.offcanvas', () => {
         this.showClose = true;
+        this.showLogoMob = true;
         if (this.width >= 768) {
+          this.showLogoMob = true;
           this.show = true;
           this.alone = false;
         }
@@ -47,7 +50,9 @@ export class OffcanvasComponent implements OnInit {
 
       myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
         this.showClose = false;
+        this.showLogoMob = false;
         if (this.width >= 768) {
+          this.showLogoMob = true;
           this.show = false;
           this.alone = true;
         }

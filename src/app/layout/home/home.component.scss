@@ -1,9 +1,16 @@
 .home {
   padding: 72px 48px 48px 48px;
+  overflow: hidden;
+
+  .charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+  }
 
   .box {
     &__gg {
-      width: 70%;
+      width: 100%;
       padding: 24px;
       box-sizing: border-box;
       flex-flow: wrap;
@@ -16,7 +23,7 @@
       border: 1px solid rgba(248, 249, 250, 0.05);
       border-radius: 12px;
       box-shadow: rgba(62, 72, 83, 0.3) 0px 8px 24px;
-      margin: 36px 24px 0 0;
+      margin: 0;
 
       &__title {
         margin-bottom: 16px;
@@ -38,6 +45,10 @@
         width: 100%;
       }
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 72px 40px 40px 40px;
   }
 
 }

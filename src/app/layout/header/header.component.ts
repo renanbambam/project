@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TokensService } from 'src/app/auth/tokens/tokens.service';
 import { EventBusService } from 'src/app/shared/event-bus.service';
 import { EventData } from 'src/app/shared/event.class';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-header',
@@ -34,6 +35,9 @@ export class HeaderComponent implements OnInit {
   email!: string;
   name!: string;
   content?: string;
+  activee!: number;
+  passive!: number;
+  netWorth!: number;
 
   constructor(
     private http: HttpClient,
@@ -44,17 +48,18 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     const accessToken = this.tokensService.getAccessToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
 
     if (accessToken !== null) {
+      const decodedToken: any = jwt_decode.jwtDecode(accessToken);
+      const name = decodedToken.name;
+
       this.http
-        .get(`${this.endpoint}/user`, {
-          headers: this.headers,
-          withCredentials: true,
-        })
+        .get(`${this.endpoint}/enterprises/name?name=${name}`, { headers } )
         .subscribe({
           next: (res: any) => {
-            this.email = res['email'];
-            this.name = res['name'];
+            this.email = res[0]['email'];
+            this.name = res[0]['name'];
           },
           error: (err) => {
             if (err.status === 403)
@@ -62,6 +67,22 @@ export class HeaderComponent implements OnInit {
           },
         });
     }
+
+    this.getAccountancyData(headers);
+  }
+
+  getAccountancyData(headers: HttpHeaders) {
+    this.http.post<any>(`${this.endpoint}/accountancies`, {}, { headers })
+      .subscribe({
+        next: (res) => {
+          this.activee = res.active;
+          this.passive = res.passive;
+          this.netWorth = res.netWorth;
+        },
+        error: (err) => {
+          console.error('Erro ao obter dados da contabilidade:', err);
+        }
+      });
   }
 
   activate() {
